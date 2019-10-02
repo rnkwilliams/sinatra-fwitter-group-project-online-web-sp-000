@@ -35,26 +35,26 @@ class TweetsController < ApplicationController
     end
     
     get '/tweets/:id' do
-    if !Helpers.is_logged_in?(session)
-      redirect to '/login'
-    end
-    @tweet = Tweet.find(params[:id])
-    erb :"tweets/show_tweet"
-  end
-
-  get '/tweets/:id/edit' do
-    if !Helpers.is_logged_in?(session)
-      redirect to '/login'
-    end
-    @tweet = Tweet.find(params[:id])
-    if Helpers.current_user(session).id != @tweet.user_id
-      flash[:wrong_user_edit] = "Sorry you can only edit your own tweets"
-      redirect to '/tweets'
-    end
-    erb :"tweets/edit_tweet"
-  end
-
-  patch '/tweets/:id' do
+      if !Helpers.is_logged_in?(session)
+        redirect to '/login'
+      end
+      @tweet = Tweet.find(params[:id])
+      erb :"tweets/show_tweet"
+   end
+   
+   get 'tweets/:id/edit' do
+      if !Helpers.is_logged_in?(session)
+        redirect to '/login'
+      end
+      @tweet = Tweet.find(params[:id])
+      if Helpers.current_user(session).id != @tweet.user_id
+        flash[:wrong_user_edit] = "Sorry you can only edit your own tweets"
+        redirect to '/tweets'
+      end
+        erb :"tweets/edit_tweet"
+   end
+   
+   patch '/tweets/:id' do
     tweet = Tweet.find(params[:id])
     if params["content"].empty?
       flash[:empty_tweet] = "Please enter content for your tweet"
@@ -65,7 +65,6 @@ class TweetsController < ApplicationController
 
     redirect to "/tweets/#{tweet.id}"
   end
-
   
     post '/tweets/:id/delete' do
       if !Helpers.is_logged_in?(session)
