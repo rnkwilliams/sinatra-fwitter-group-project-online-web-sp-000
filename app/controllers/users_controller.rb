@@ -50,18 +50,18 @@ class UsersController < ApplicationController
   end
   
   get '/logout' do
-      session.clear
-      redirect to '/login'
+    session.clear
+    redirect to '/login'
 
-      if Helper.is_logged_in?(session)
-        erb :'/tweets/tweets'
-      end
+    if Helper.is_logged_in?(session)
+      erb :'/tweets/tweets'
+    end
   end
   
   get '/users/:slug' do
-      slug = params[:slug]
-      @user = User.find_by_slug(slug)
-      erb :"users/show"
+    slug = params[:slug]
+    @user = User.find_by_slug(slug)
+    erb :"users/show"
   end
 
 
