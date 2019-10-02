@@ -78,8 +78,4 @@ class TweetsController < ApplicationController
       @tweet.delete
       redirect to '/tweets'
     end
-  
-    
-    
-    
 end
