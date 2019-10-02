@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-
-    get '/users' do
-        @users = User.all
-        erb :'users/index'
+    
+    get '/users/:slug' do
+      slug = params[:slug]
+      @user = User.find_by_slug(slug)
+      erb :"users/show"
     end
 
 
