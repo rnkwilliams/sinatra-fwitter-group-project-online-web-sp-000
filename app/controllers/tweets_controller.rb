@@ -51,7 +51,7 @@ class TweetsController < ApplicationController
         flash[:wrong_user_edit] = "Sorry you can only edit your own tweets"
         redirect to '/tweets'
       end
-        erb :"tweets/show_tweet"
+        erb :"tweets/edit_tweet"
    end
    
    patch '/tweets/:id' do
