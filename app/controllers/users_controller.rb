@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     set :session_secret, "secret"
   end
     
-    get '/signup' do
+  get '/signup' do
     if Helpers.is_logged_in?(session)
       redirect to '/tweets'
     end
@@ -58,11 +58,11 @@ class UsersController < ApplicationController
       end
   end
   
-    get '/users/:slug' do
+  get '/users/:slug' do
       slug = params[:slug]
       @user = User.find_by_slug(slug)
       erb :"users/show"
-    end
+  end
 
 
 end
