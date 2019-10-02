@@ -66,7 +66,6 @@ class TweetsController < ApplicationController
     redirect to "/tweets/#{tweet.id}"
   end
 
-  
     post '/tweets/:id/delete' do
       if !Helpers.is_logged_in?(session)
         redirect to '/login'
